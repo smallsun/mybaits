@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.paperclips.rest.dao.SimpleObject">
+	<!--
+		描述：
+		责任人：
+	-->
+	<resultMap id="BaseResultMap" type="SimpleObjectDO">
+			<result column="id" property="id" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="selectSimpleObjectByID" parameterType="SimpleObjectDO" resultMap="BaseResultMap">
+		select 
+			 id
+		from SimpleObject
+		where id = #{id}
+		limit 0,1
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="selectSimpleObjectForPageList" parameterType="SimpleObjectDO" resultMap="BaseResultMap">
+		select 
+			 id
+		from SimpleObject
+		<where>
+				<if test="id != null and id != ''" >
+					and id = #{id}
+				</if>
+		</where>
+		limit #{startRow},#{perPageSize}
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="countSimpleObjectForPageList" parameterType="SimpleObjectDO" resultMap="BaseResultMap">
+		select count(1)
+		from SimpleObject
+		<where>
+				<if test="id != null and id != ''" >
+					and id = #{id}
+				</if>
+		</where>
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="selectSimpleObjectForList" parameterType="SimpleObjectDO" resultMap="BaseResultMap">
+		select 
+			 id
+		from SimpleObject
+		<where>
+				<if test="id != null and id != ''" >
+					and id = #{id}
+				</if>
+		</where>
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<update id="deleteSimpleObject" parameterType="SimpleObjectDO">
+		delete from SimpleObject
+		where id = #{id}
+	</update>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<update id="updateSimpleObject" parameterType="SimpleObjectDO">
+		update SimpleObject
+		<set>
+			<if test="id != null and id != ''" >
+				id = #{id},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<insert id="insertSimpleObject" parameterType="SimpleObjectDO">
+		insert into SimpleObject (
+		 id )
+		values
+		( #{id} )
+		
+		<selectKey  order="AFTER" keyProperty="id" resultType="Integer">
+			select last_insert_id() 
+		</selectKey> 
+	</insert>
+</mapper>

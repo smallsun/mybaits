@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.paperclips.rest.dao.SimpleChildObject">
+	<!--
+		描述：
+		责任人：
+	-->
+	<resultMap id="BaseResultMap" type="SimpleChildObjectDO">
+			<result column="id" property="id" jdbcType="VARCHAR" />
+			<result column="simple_object_id" property="simpleObjectId" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="selectSimpleChildObjectByID" parameterType="SimpleChildObjectDO" resultMap="BaseResultMap">
+		select 
+			 id,
+			 simple_object_id
+		from SimpleChildObject
+		where id = #{id}
+		limit 0,1
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="selectSimpleChildObjectForPageList" parameterType="SimpleChildObjectDO" resultMap="BaseResultMap">
+		select 
+			 id,
+			 simple_object_id
+		from SimpleChildObject
+		<where>
+				<if test="id != null and id != ''" >
+					and id = #{id}
+				</if>
+				<if test="simpleObjectId != null and simpleObjectId != ''" >
+					and simple_object_id = #{simpleObjectId}
+				</if>
+		</where>
+		limit #{startRow},#{perPageSize}
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="countSimpleChildObjectForPageList" parameterType="SimpleChildObjectDO" resultMap="BaseResultMap">
+		select count(1)
+		from SimpleChildObject
+		<where>
+				<if test="id != null and id != ''" >
+					and id = #{id}
+				</if>
+				<if test="simpleObjectId != null and simpleObjectId != ''" >
+					and simpleObjectId = #{simpleObjectId}
+				</if>
+		</where>
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="selectSimpleChildObjectForList" parameterType="SimpleChildObjectDO" resultMap="BaseResultMap">
+		select 
+			 id,
+			 simple_object_id
+		from SimpleChildObject
+		<where>
+				<if test="id != null and id != ''" >
+					and id = #{id}
+				</if>
+				<if test="simpleObjectId != null and simpleObjectId != ''" >
+					and simple_object_id = #{simpleObjectId}
+				</if>
+		</where>
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<update id="deleteSimpleChildObject" parameterType="SimpleChildObjectDO">
+		delete from SimpleChildObject
+		where id = #{id}
+	</update>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<update id="updateSimpleChildObject" parameterType="SimpleChildObjectDO">
+		update SimpleChildObject
+		<set>
+			<if test="id != null and id != ''" >
+				id = #{id},
+			</if>
+			<if test="simpleObjectId != null and simpleObjectId != ''" >
+				simple_object_id = #{simpleObjectId},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<insert id="insertSimpleChildObject" parameterType="SimpleChildObjectDO">
+		insert into SimpleChildObject (
+		 id,  simple_object_id )
+		values
+		( #{id},  #{simpleObjectId} )
+		
+		<selectKey  order="AFTER" keyProperty="id" resultType="Integer">
+			select last_insert_id() 
+		</selectKey> 
+	</insert>
+</mapper>

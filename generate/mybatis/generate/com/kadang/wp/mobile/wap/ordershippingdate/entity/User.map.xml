@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kadang.wp.mobile.wap.ordershippingdate.entity.User">
+	
+	
+	<resultMap id="BaseResultMap" type="User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+			<result column="mobile" property="mobile" jdbcType="CHAR" />
+			<result column="nickName" property="nickName" jdbcType="VARCHAR" />
+			<result column="email" property="email" jdbcType="VARCHAR" />
+			<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+			<result column="birthday" property="birthday" jdbcType="INTEGER" />
+			<result column="gender" property="gender" jdbcType="CHAR" />
+			<result column="level" property="level" jdbcType="TINYINT" />
+			<result column="loveState" property="loveState" jdbcType="TINYINT" />
+			<result column="isDisable" property="isDisable" jdbcType="TINYINT" />
+			<result column="createTime" property="createTime" jdbcType="INTEGER" />
+			<result column="lastLogin" property="lastLogin" jdbcType="INTEGER" />
+	</resultMap>
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="selectUserByID" parameterType="User" resultMap="BaseResultMap">
+		select id,
+			 mobile,
+			 nickName,
+			 email,
+			 avatar,
+			 birthday,
+			 gender,
+			 level,
+			 loveState,
+			 isDisable,
+			 createTime,
+			 lastLogin
+		from zh_user
+		where id = #{id}
+		limit 0,1
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="selectUserForPageList" parameterType="User" resultMap="BaseResultMap">
+		select id,
+			 mobile,
+			 nickName,
+			 email,
+			 avatar,
+			 birthday,
+			 gender,
+			 level,
+			 loveState,
+			 isDisable,
+			 createTime,
+			 lastLogin
+		from zh_user
+		<where>
+				<if test="mobile != null and mobile != ''" >
+					and mobile = #{mobile}
+				</if>
+				<if test="nickName != null and nickName != ''" >
+					and nickName = #{nickName}
+				</if>
+				<if test="email != null and email != ''" >
+					and email = #{email}
+				</if>
+				<if test="avatar != null and avatar != ''" >
+					and avatar = #{avatar}
+				</if>
+				<if test="birthday != null and birthday != ''" >
+					and birthday = #{birthday}
+				</if>
+				<if test="gender != null and gender != ''" >
+					and gender = #{gender}
+				</if>
+				<if test="level != null and level != ''" >
+					and level = #{level}
+				</if>
+				<if test="loveState != null and loveState != ''" >
+					and loveState = #{loveState}
+				</if>
+				<if test="isDisable != null and isDisable != ''" >
+					and isDisable = #{isDisable}
+				</if>
+				<if test="createTime != null and createTime != ''" >
+					and createTime = #{createTime}
+				</if>
+				<if test="lastLogin != null and lastLogin != ''" >
+					and lastLogin = #{lastLogin}
+				</if>
+		</where>
+		limit #{startRow},#{perPageSize}
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="countUserForPageList" parameterType="User" resultMap="BaseResultMap">
+		select count(1)
+		from zh_user
+		<where>
+				<if test="mobile != null and mobile != ''" >
+					and mobile = #{mobile}
+				</if>
+				<if test="nickName != null and nickName != ''" >
+					and nickName = #{nickName}
+				</if>
+				<if test="email != null and email != ''" >
+					and email = #{email}
+				</if>
+				<if test="avatar != null and avatar != ''" >
+					and avatar = #{avatar}
+				</if>
+				<if test="birthday != null and birthday != ''" >
+					and birthday = #{birthday}
+				</if>
+				<if test="gender != null and gender != ''" >
+					and gender = #{gender}
+				</if>
+				<if test="level != null and level != ''" >
+					and level = #{level}
+				</if>
+				<if test="loveState != null and loveState != ''" >
+					and loveState = #{loveState}
+				</if>
+				<if test="isDisable != null and isDisable != ''" >
+					and isDisable = #{isDisable}
+				</if>
+				<if test="createTime != null and createTime != ''" >
+					and createTime = #{createTime}
+				</if>
+				<if test="lastLogin != null and lastLogin != ''" >
+					and lastLogin = #{lastLogin}
+				</if>
+		</where>
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<select id="selectUserForList" parameterType="User" resultMap="BaseResultMap">
+		select id,
+			 mobile,
+			 nickName,
+			 email,
+			 avatar,
+			 birthday,
+			 gender,
+			 level,
+			 loveState,
+			 isDisable,
+			 createTime,
+			 lastLogin
+		from zh_user
+		<where>
+				<if test="mobile != null and mobile != ''" >
+					and mobile = #{mobile}
+				</if>
+				<if test="nickName != null and nickName != ''" >
+					and nickName = #{nickName}
+				</if>
+				<if test="email != null and email != ''" >
+					and email = #{email}
+				</if>
+				<if test="avatar != null and avatar != ''" >
+					and avatar = #{avatar}
+				</if>
+				<if test="birthday != null and birthday != ''" >
+					and birthday = #{birthday}
+				</if>
+				<if test="gender != null and gender != ''" >
+					and gender = #{gender}
+				</if>
+				<if test="level != null and level != ''" >
+					and level = #{level}
+				</if>
+				<if test="loveState != null and loveState != ''" >
+					and loveState = #{loveState}
+				</if>
+				<if test="isDisable != null and isDisable != ''" >
+					and isDisable = #{isDisable}
+				</if>
+				<if test="createTime != null and createTime != ''" >
+					and createTime = #{createTime}
+				</if>
+				<if test="lastLogin != null and lastLogin != ''" >
+					and lastLogin = #{lastLogin}
+				</if>
+		</where>
+	</select>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<delete id="deleteUser" parameterType="User">
+		delete  from zh_user
+		where id = #{id}
+	</delete>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<update id="updateUser" parameterType="User">
+		update zh_user
+		<set>
+			<if test="mobile != null and mobile != ''" >
+				 mobile = #{mobile},
+			</if>
+			<if test="nickName != null and nickName != ''" >
+				 nickName = #{nickName},
+			</if>
+			<if test="email != null and email != ''" >
+				 email = #{email},
+			</if>
+			<if test="avatar != null and avatar != ''" >
+				 avatar = #{avatar},
+			</if>
+			<if test="birthday != null and birthday != ''" >
+				 birthday = #{birthday},
+			</if>
+			<if test="gender != null and gender != ''" >
+				 gender = #{gender},
+			</if>
+			<if test="level != null and level != ''" >
+				 level = #{level},
+			</if>
+			<if test="loveState != null and loveState != ''" >
+				 loveState = #{loveState},
+			</if>
+			<if test="isDisable != null and isDisable != ''" >
+				 isDisable = #{isDisable},
+			</if>
+			<if test="createTime != null and createTime != ''" >
+				 createTime = #{createTime},
+			</if>
+			<if test="lastLogin != null and lastLogin != ''" >
+				 lastLogin = #{lastLogin},
+			</if>
+			
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!--
+		描述：
+		责任人：
+	-->
+	<insert id="insertUser" parameterType="User">
+		insert into zh_user (
+		 mobile,  nickName,  email,  avatar,  birthday,  gender,  level,  loveState,  isDisable,  createTime,  lastLogin )
+		values
+		( #{mobile},  #{nickName},  #{email},  #{avatar},  #{birthday},  #{gender},  #{level},  #{loveState},  #{isDisable},  #{createTime},  #{lastLogin} )
+		
+		<selectKey  order="AFTER" keyProperty="id" resultType="Integer">
+			select last_insert_id() 
+		</selectKey> 
+	</insert>
+</mapper>
